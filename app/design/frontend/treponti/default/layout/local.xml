@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+    <default>
+        <reference name="right">
+            <remove name="catalog.compare.sidebar" />
+            <remove name="cart_sidebar" />
+        </reference>
+    </default>
+
+</layout>
