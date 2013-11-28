@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Maze_ProductMenu>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depend>
+                <Mage_Page />
+            </depend>
+        </Maze_ProductMenu>
+    </modules>
+</config>

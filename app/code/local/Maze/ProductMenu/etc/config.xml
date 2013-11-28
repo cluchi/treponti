@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Maze_ProductMenu>
+            <version>0.1.0</version>
+        </Maze_ProductMenu>
+    </modules>
+    <global>
+        <blocks>
+            <page>
+                <html>
+                    <rewrite>
+                        <topmenu>Maze_ProductMenu_Block_Html_Topmenu</topmenu>
+                    </rewrite>
+                </html>
+            </page>
+        </blocks>
+    </global>
+</config>
