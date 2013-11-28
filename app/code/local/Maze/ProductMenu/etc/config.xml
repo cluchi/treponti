@@ -8,11 +8,9 @@
     <global>
         <blocks>
             <page>
-                <html>
-                    <rewrite>
-                        <topmenu>Maze_ProductMenu_Block_Html_Topmenu</topmenu>
-                    </rewrite>
-                </html>
+                <rewrite>
+                    <html_topmenu>Maze_ProductMenu_Block_Html_Topmenu</html_topmenu>
+                </rewrite>
             </page>
         </blocks>
     </global>
