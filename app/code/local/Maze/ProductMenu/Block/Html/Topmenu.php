@@ -34,39 +34,60 @@ class Maze_ProductMenu_Block_Html_TopMenu extends Mage_Page_Block_Html_Topmenu{
             $html .= '<a href="' . $child->getUrl() . '" ' . $outermostClassCode . '><span>'
                 . $this->escapeHtml($child->getName()) . '</span></a>';
 
-//            if ($child->hasChildren()) {
-//                if (!empty($childrenWrapClass)) {
-//                    $html .= '<div class="' . $childrenWrapClass . '">';
-//                }
-//                $html .= '<ul class="level' . $childLevel . '">';
-//                $html .= $this->_getHtml($child, $childrenWrapClass);
-//                $html .= '</ul>';
-//
-//                if (!empty($childrenWrapClass)) {
-//                    $html .= '</div>';
-//                }
-//            }
             $catId = substr($child->getId(),14,3);
             $newCarCollection = Mage::getModel('catalog/category')->load($catId);
             $newCarCollectionProducts = $newCarCollection->getProductCollection();
-            if(count($newCarCollectionProducts) > 0){
-                $html .= '<div class="' . $childrenWrapClass . '">';
-                $html .= '<ul class="level' . $childLevel . '">';
+
+            $totalProducts = count($newCarCollectionProducts);
+            $totalColumns = $this->getNumberOfColumns($totalProducts);
+            $totalProductsPerColumn = $this->getNumberOfProductsPerColumn($totalColumns,$totalProducts);
+
+            if($totalProducts > 0){
+                $column = 0;
+                $productNo = 0;
+                $html .= '<div class="products-menu">';
+
                 foreach($newCarCollectionProducts as $product){
+                    $productNo++;
+                    if(1 === $productNo || 1 === $productNo%$totalProductsPerColumn){
+                        $column++;
+                        $html .= '<ul class="level' . $column . '">';
+                    }
                     $_product = Mage::getModel('catalog/product')->load($product->getId());
                     $html .= '<li>';
                     $html .= '<a href="' . $_product->getUrlPath() . '"><span>'
                         . $this->escapeHtml($_product->getName()) . '</span></a>';
                     $html .= '</li>';
+
+                    if(0 === $productNo%$totalProductsPerColumn || ($column === $totalColumns && $productNo === $totalProducts)){
+                        $html .= '</ul>';
+                    }
                 }
-                $html .= '</ul>';
+
                 $html .= '</div>';
             }
             $html .= '</li>';
 
             $counter++;
         }
-
         return $html;
+    }
+
+    public function getNumberOfColumns($totalProducts){
+        if($totalProducts > 24){
+            $numberOfColumns = 4;
+        } else if($totalProducts > 10){
+            $numberOfColumns = 3;
+        } else if($totalProducts > 5){
+            $numberOfColumns = 2;
+        } else {
+            $numberOfColumns = 1;
+        }
+        return $numberOfColumns;
+    }
+
+    public function getNumberOfProductsPerColumn($totalColumns, $totalProducts) {
+        $numberOfProducts = ceil($totalProducts/$totalColumns);
+        return $numberOfProducts;
     }
 }
