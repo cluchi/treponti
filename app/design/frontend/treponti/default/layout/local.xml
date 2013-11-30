@@ -12,6 +12,9 @@
             <remove name="paypal.partner.right.logo" />
             <remove name="right.poll" />
         </reference>
+        <reference name ="page">
+            <remove name="breadcrumbs" />
+        </reference>
     </default>
 
 </layout>
