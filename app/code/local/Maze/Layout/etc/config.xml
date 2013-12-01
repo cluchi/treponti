@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Maze_Layout>
+            <version>0.1.0</version>
+        </Maze_Layout>
+    </modules>
+    <global>
+        <page>
+            <layouts>
+                <two_columns_cart module="page" translate="label">
+                    <label>2 columns cart</label>
+                    <template>page/2columns-cart.phtml</template>
+                    <layout_handle>two_columns_cart</layout_handle>
+                </two_columns_cart>
+            </layouts>
+        </page>
+    </global>
+</config>
