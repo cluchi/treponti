@@ -37,21 +37,25 @@
 <body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
 <?php echo $this->getChildHtml('after_body_start') ?>
 <div class="wrapper">
-    <?php echo $this->getChildHtml('global_notices') ?>
+    <?php //echo $this->getChildHtml('global_notices') ?>
     <div class="page">
-        <?php echo $this->getChildHtml('header') ?>
-        <div class="col-right sidebar"><?php echo $this->getChildHtml('right') ?></div>
+
         <div class="main-container col2-right-layout">
             <div class="main">
-                <?php echo $this->getChildHtml('breadcrumbs') ?>
-                <div class="col-main">
-                    <?php echo $this->getChildHtml('global_messages') ?>
-                    <?php echo $this->getChildHtml('content') ?>
+                <div style="width:75%;float:left">
+                    <?php echo $this->getChildHtml('header') ?>
+                    <div class="col-main">
+                        <?php //echo $this->getChildHtml('global_messages') ?>
+                        <?php echo $this->getChildHtml('content') ?>
+                    </div>
+                    <?php echo $this->getChildHtml('footer') ?>
                 </div>
-
+                <div class="col-right sidebar" style="width:25%">
+                        <?php echo $this->getChildHtml('right') ?>
+                </div>
             </div>
         </div>
-        <?php echo $this->getChildHtml('footer') ?>
+
         <?php echo $this->getChildHtml('before_body_end') ?>
     </div>
 </div>

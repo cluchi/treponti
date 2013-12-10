@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
 <layout version="0.1.0">
-
     <default>
+        <!--<remove name="header" />-->
         <reference name="header">
             <remove name="top.search" />
+            <!--<remove name="top.links" />-->
         </reference>
         <reference name="right">
             <remove name="catalog.compare.sidebar" />
@@ -11,10 +12,19 @@
             <remove name="right.permanent.callout" />
             <remove name="paypal.partner.right.logo" />
             <remove name="right.poll" />
+            <remove name="right.reports.product.viewed" />
+            <remove name="left.reports.product.viewed" />"
+            <block type="page/template_links" name="top.links" as="topLinks">
+                <block type="checkout/links" name="checkout_cart_link">
+                    <action method="addCartLink"></action>
+                    <action method="addCheckoutLink"></action>
+                </block>
+            </block>
         </reference>
         <reference name ="page">
             <remove name="breadcrumbs" />
         </reference>
+
         <page_two_columns_cart translate="label">
             <label>Black Friday</label>
             <reference name="root">
@@ -24,5 +34,42 @@
             </reference>
         </page_two_columns_cart>
     </default>
+
+    <catalog_category_default translate="label">
+        <label>Catalog Category (Non-Anchor)</label>
+
+        <reference name="content">
+            <block type="catalog/category_view" name="category.products" template="catalog/category/view.phtml">
+                <block type="catalog/product_list" name="product_list" template="catalog/product/list.phtml">
+                    <action method="addColumnCountLayoutDepend"><layout>empty</layout><count>6</count></action>
+                    <action method="addColumnCountLayoutDepend"><layout>one_column</layout><count>5</count></action>
+                    <action method="addColumnCountLayoutDepend"><layout>two_columns_left</layout><count>4</count></action>
+                    <action method="addColumnCountLayoutDepend"><layout>two_columns_right</layout><count>4</count></action>
+                    <action method="addColumnCountLayoutDepend"><layout>three_columns</layout><count>3</count></action>
+                    <action method="setToolbarBlockName"><name>product_list_toolbar</name></action>
+                </block>
+            </block>
+        </reference>
+    </catalog_category_default>
+
+
+
+    <catalog_category_layered translate="label">
+        <label>Catalog Category (Anchor)</label>
+
+        <reference name="content">
+            <block type="catalog/category_view" name="category.products" template="catalog/category/view.phtml">
+                <block type="catalog/product_list" name="product_list" template="catalog/product/list.phtml">
+                    <action method="addColumnCountLayoutDepend"><layout>empty</layout><count>6</count></action>
+                    <action method="addColumnCountLayoutDepend"><layout>one_column</layout><count>5</count></action>
+                    <action method="addColumnCountLayoutDepend"><layout>two_columns_left</layout><count>4</count></action>
+                    <action method="addColumnCountLayoutDepend"><layout>two_columns_right</layout><count>4</count></action>
+                    <action method="addColumnCountLayoutDepend"><layout>three_columns</layout><count>3</count></action>
+                    <action method="setToolbarBlockName"><name>product_list_toolbar</name></action>
+                </block>
+            </block>
+        </reference>
+    </catalog_category_layered>
+
 
 </layout>
