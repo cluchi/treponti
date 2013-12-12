@@ -1,6 +1,18 @@
 <?xml version="1.0"?>
 <layout version="0.1.0">
     <default>
+        <reference name="head">
+            <!-- jQuery -->
+            <action method="addJs"><script>maze/jquery/jquery-1.8.3.min.js</script></action>
+            <action method="addJs"><script>maze/jquery/jquery-noconflict.js</script></action>
+
+            <!-- jQuery plugins -->
+            <action method="addJs"><script>maze/jquery/plugins/jquery.easing.min.js</script></action>
+            <action method="addJs"><script>maze/jquery/plugins/jquery.flexslider.min.js</script></action>
+            <action method="addJs"><script>maze/jquery/plugins/jquery.tabs.min.js</script></action>
+            <action method="addJs"><script>maze/jquery/plugins/jquery.accordion.min.js</script></action>
+            <action method="addJs"><script>maze/jquery/plugins/jquery.ba-throttle-debounce.min.js</script></action>
+        </reference>
         <!--<remove name="header" />-->
         <reference name="header">
             <remove name="top.search" />
@@ -34,5 +46,22 @@
             </reference>
         </page_two_columns_cart>
     </default>
+
+    <catalog_product_view>
+       <!-- Change default template for product view. IMPORTANT: the same as in 'review_product_list'. -->
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-cart.phtml</template></action>
+        </reference>
+    </catalog_product_view>
+    <catalog_category_default>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-cart.phtml</template></action>
+        </reference>
+    </catalog_category_default>
+    <catalog_category_layered>
+        <reference name="root">
+            <action method="setTemplate"><template>page/2columns-cart.phtml</template></action>
+        </reference>
+    </catalog_category_layered>
 
 </layout>
