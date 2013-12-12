@@ -52,17 +52,37 @@
                 <div class="f-fix">
                     <?php $_productNameStripped = $this->stripTags($_product->getName(), null, true); ?>
                     <h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped; ?>"><?php echo $_helper->productAttribute($_product, $_product->getName() , 'name'); ?></a></h2>
-                    <?php echo $this->getPriceHtml($_product, true) ?>
-                    <?php if($_product->isSaleable()): ?>
-                        <p><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
-                    <?php else: ?>
-                        <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
-                    <?php endif; ?>
                     <div class="desc std">
                         <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
                     </div>
+                    <?php if ($_product->isGrouped()){
+                        $_associatedProducts = $_product->getTypeInstance(true)->getAssociatedProducts($_product);
+                        foreach($_associatedProducts as $_item){
+                            if($_item->isSaleable()): ?>
+                                <p class="size"><?php echo $_item->getAttributeText('size') ?></p>
+                                <?php echo $this->getPriceHtml($_item, true) ?>
+                                <p><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_item) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
+                            <?php else: ?>
+                                <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                            <?php endif; ?>
+                        <?php }?>
+
+                    <?php } else {?>
+                        <?php echo $this->getPriceHtml($_product, true) ?>
+                        <?php if($_product->isSaleable()): ?>
+                            <p><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
+                        <?php else: ?>
+                            <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                        <?php endif; ?>
+                    <?php }?>
+
                 </div>
             </div>
+
+
+
+
+
         </li>
     <?php endforeach; ?>
     </ol>
