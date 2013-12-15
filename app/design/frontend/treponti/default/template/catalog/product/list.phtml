@@ -38,11 +38,11 @@
 <?php if(!$_productCollection->count()): ?>
 <p class="note-msg"><?php echo $this->__('There are no products matching the selection.') ?></p>
 <?php else: ?>
-<div class="category-products">
+<div class="category-products" id="banner-slide">
     <?php // List mode ?>
     <?php if($this->getMode()!='grid'): ?>
     <?php $_iterator = 0; ?>
-    <ol class="products-list" id="products-list">
+    <ul class="products-list bjqs" id="products-list">
     <?php foreach ($_productCollection as $_product): ?>
         <li id="<?php echo $_product->getData('url_key')?>" class="item<?php if( ++$_iterator == sizeof($_productCollection) ): ?> last<?php endif; ?>">
             <?php // Product Image ?>
@@ -85,7 +85,7 @@
 
         </li>
     <?php endforeach; ?>
-    </ol>
+    </ul>
     <script type="text/javascript">decorateList('products-list', 'none-recursive')</script>
 
     <?php else: ?>
