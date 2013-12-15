@@ -42,7 +42,7 @@
 
         <div class="main-container col2-right-layout">
             <div class="main">
-                <div style="width:75%;float:left">
+                <div class="col_left">
                     <?php echo $this->getChildHtml('header') ?>
                     <div class="col-main">
                         <?php //echo $this->getChildHtml('global_messages') ?>
@@ -50,8 +50,10 @@
                     </div>
                     <?php echo $this->getChildHtml('footer') ?>
                 </div>
-                <div class="col-right sidebar" style="width:25%">
+                <div class="col-right sidebar">
+                        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('sidebar_info ')->toHtml() ?> 
                         <?php echo $this->getChildHtml('right') ?>
+                        <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('social ')->toHtml() ?> 
                 </div>
             </div>
         </div>
