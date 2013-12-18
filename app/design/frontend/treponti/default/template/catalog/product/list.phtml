@@ -40,6 +40,42 @@
 <?php else: ?>
 <div class="category-products" id="banner-slide">
     <?php // List mode ?>
+    <script class="secret-source">
+        jQuery(document).ready(function($) {
+
+            $('#banner-slide').bjqs({
+                height      : 350,
+                width       : 698,
+                responsive  : false,
+                animtype      : 'slide',
+                automatic : false
+            });
+            var ulList = jQuery('#products-list li'),
+                arrayIds = [],
+                url,
+                slideId,
+                slideNo;
+
+            for(var i=0;i<ulList.length;i++){
+                arrayIds.push(ulList[i].id);
+            }
+            console.log(arrayIds);
+            url = document.URL;
+            slideId = url.substr(url.indexOf("#") + 1);
+            slideNo = arrayIds.indexOf(slideId)+1;
+            console.log('slideNo'+slideNo);
+            if (slideNo > 0) {
+                for(var i=1;i<slideNo;i++){
+                    //jQuery('.bjqs-next a').click();
+                    //console.log('click');
+                }
+                //jQuery('.bjqs-prev a').click();
+                //console.log('click');
+            }
+        });
+
+
+    </script>
     <?php if($this->getMode()!='grid'): ?>
     <?php $_iterator = 0; ?>
     <ul class="products-list bjqs" id="products-list">
@@ -129,4 +165,6 @@
     <?php endif; ?>
 
 </div>
+
+
 <?php endif; ?>

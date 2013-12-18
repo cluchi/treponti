@@ -55,7 +55,7 @@ class Maze_ProductMenu_Block_Html_TopMenu extends Mage_Page_Block_Html_Topmenu{
                     }
                     $_product = Mage::getModel('catalog/product')->load($product->getId());
                     $html .= '<li>';
-                    $html .= '<a href="' . $_product->getUrlPath() . '"><span>'
+                    $html .= '<a href="' . $child->getUrl().'#'.$_product->getData('url_key') . '"><span>'
                         . $this->escapeHtml($_product->getName()) . '</span></a>';
                     $html .= '</li>';
 
