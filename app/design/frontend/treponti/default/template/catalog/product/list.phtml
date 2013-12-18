@@ -44,7 +44,10 @@
     <?php foreach ($_productCollection as $_product): ?>
         <li id="<?php echo $_product->getData('url_key')?>" class="item<?php if( ++$_iterator == sizeof($_productCollection) ): ?> last<?php endif; ?>">
             <?php // Product Image ?>
-            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(135); ?>" width="135" height="135" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /></a>
+            <a href="<?php echo $_product->getProductUrl() ?>"
+               title="<?php echo $this->stripTags($this->getImageLabel($_product, 'thumbnail'), null, true) ?>"
+               class="product-image">
+                <img src="<?php echo $this->helper('catalog/image')->init($_product, 'thumbnail')->resize(500); ?>" width="500" height="500" alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'thumbnail'), null, true) ?>" /></a>
             <?php // Product description ?>
             <div class="product-shop">
                 <div class="f-fix">
@@ -89,8 +92,8 @@
     jQuery(document).ready(function($) {
 
         $('#banner-slide').bjqs({
-            height      : 350,
-            width       : 698,
+            height      : 600,
+            width       : 753,
             responsive  : false,
             animtype      : 'slide',
             automatic : false
